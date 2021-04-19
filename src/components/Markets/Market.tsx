@@ -5,6 +5,7 @@ import {
   Theme,
   Typography,
 } from "@material-ui/core";
+import { MarketTypes } from "../../types/markets";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,11 +30,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Market = (props: { market: string; selected: boolean }) => {
+const Market = (props: {
+  market: string;
+  selected: boolean;
+  updateMarket: (newMarket: MarketTypes) => void;
+}) => {
   const classes = useStyles();
 
   return (
-    <Grid item className={classes.root}>
+    <Grid
+      item
+      className={classes.root}
+      onClick={() => props.updateMarket(props.market as MarketTypes)}
+    >
       <Typography
         className={props.selected ? classes.selectedText : classes.text}
         variant="caption"

@@ -5,5 +5,6 @@ export interface SymbolData {
   exchange: string;
   provider_id: string;
   typespecs?: string[];
-  country: string;
+  country?: string;
+  prefix?: string;
 }

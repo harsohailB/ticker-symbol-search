@@ -6,4 +6,5 @@ export interface APIConfiguration {
   protocol: string;
   baseUrl: string;
   endpoint: string;
+  proxyEndpoint: string;
 }

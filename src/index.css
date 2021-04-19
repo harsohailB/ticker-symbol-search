@@ -8,3 +8,8 @@ body {
   height: 100vh;
   background-color: #131313;
 }
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
