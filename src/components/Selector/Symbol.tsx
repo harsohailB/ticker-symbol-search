@@ -2,6 +2,8 @@ import {
   createStyles,
   Grid,
   makeStyles,
+  TableCell,
+  TableRow,
   Theme,
   Typography,
 } from "@material-ui/core";
@@ -19,9 +21,20 @@ const useStyles = makeStyles((theme: Theme) =>
         background: "rgba(255, 255, 255, 0.4)",
       },
     },
+    row: {
+      cursor: "pointer",
+    },
+    cell: {
+      borderBottom: "1px solid rgba(255, 255, 255, 0.25)",
+      padding: "5px 0px 5px 0px",
+    },
     text: {
       color: "white",
       fontWeight: 100,
+    },
+    description: {
+      width: "50%",
+      alignText: "left",
     },
     pair: {
       display: "flex",
@@ -38,34 +51,22 @@ const Symbol = (props: { symbol: SymbolData }) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      item
-      direction="row"
-      justify="space-between"
-      alignItems="center"
-      className={classes.root}
-    >
-      <Typography
-        variant="body1"
-        className={classes.text}
+    <TableRow hover className={classes.row}>
+      <TableCell
+        padding="none"
+        className={`${classes.cell} ${classes.text}`}
         dangerouslySetInnerHTML={{ __html: props.symbol.symbol }}
       />
-      <Typography
-        variant="body1"
-        className={classes.text}
+      <TableCell
+        padding="none"
+        className={`${classes.cell} ${classes.text}`}
         dangerouslySetInnerHTML={{ __html: props.symbol.description }}
       />
-
-      <div className={classes.pair}>
-        <Typography variant="caption" className={classes.type}>
-          {props.symbol.type}
-        </Typography>
-        <Typography variant="body1" className={classes.text}>
-          {props.symbol.exchange}
-        </Typography>
-      </div>
-    </Grid>
+      <TableCell padding="none" align="right" className={classes.cell}>
+        <span className={classes.type}>{props.symbol.type}</span>
+        <span className={classes.text}>{props.symbol.exchange}</span>
+      </TableCell>
+    </TableRow>
   );
 };
 

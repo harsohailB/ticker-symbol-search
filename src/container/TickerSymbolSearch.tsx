@@ -61,15 +61,16 @@ export const TickerSymbolSearch = () => {
         </Grid>
 
         {query.search.length !== 0 && (
-          <Grid item className={classes.body}>
+          <div>
             <Markets
               markets={Object.values(MarketTypes)}
               selectedMarket={query.market}
               updateMarket={updateMarket}
             />
-
-            <Selector symbols={mockSymbols} />
-          </Grid>
+            <Grid item className={classes.body}>
+              <Selector symbols={mockSymbols} />
+            </Grid>
+          </div>
         )}
       </Grid>
     </Wrapper>
