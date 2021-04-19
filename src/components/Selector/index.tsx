@@ -1,4 +1,12 @@
-import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
+import {
+  createStyles,
+  Grid,
+  makeStyles,
+  Table,
+  TableBody,
+  TableContainer,
+  Theme,
+} from "@material-ui/core";
 
 import { SymbolData } from "../../types/symbol";
 import Symbol from "./Symbol";
@@ -6,7 +14,6 @@ import Symbol from "./Symbol";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginTop: "10px",
       maxHeight: "400px",
       overflow: "scroll",
     },
@@ -17,11 +24,15 @@ const Selector = (props: { symbols: SymbolData[] }) => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root}>
-      {props.symbols.map((symbol: SymbolData) => (
-        <Symbol symbol={symbol} />
-      ))}
-    </Grid>
+    <TableContainer className={classes.root}>
+      <Table>
+        <TableBody>
+          {props.symbols.map((symbol: SymbolData) => (
+            <Symbol symbol={symbol} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
