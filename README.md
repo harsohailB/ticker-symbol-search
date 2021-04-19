@@ -1,4 +1,4 @@
-# symbol-search
+# ticker-symbol-search
 
 ## Installation
 
