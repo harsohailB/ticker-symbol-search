@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  createStyles,
-  Grid,
-  makeStyles,
-  Theme,
-  Typography,
-} from "@material-ui/core";
+import { createStyles, Grid, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 
 import DraggableWrapper from "./DraggableWrapper";
@@ -88,14 +82,12 @@ export const TickerSymbolSearch = (props: {
                 <Selector symbols={symbols} callback={props.callback} />
               )}
               {symbols.length === 0 && (
-                <Typography variant="caption" className={classes.text}>
-                  No symbols found...
-                </Typography>
+                <p className={classes.text}>No symbols found...</p>
               )}
               {isError && (
-                <Typography variant="caption" className={classes.text}>
+                <p className={classes.text}>
                   There was an error fetching symbols...
-                </Typography>
+                </p>
               )}
             </Grid>
           </div>

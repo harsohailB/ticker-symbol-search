@@ -5,8 +5,6 @@ import {
   makeStyles,
   TableCell,
   TableRow,
-  Theme,
-  Typography,
 } from "@material-ui/core";
 import { SymbolData } from "../../types/symbol";
 

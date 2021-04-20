@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     button: {
       backgroundColor: theme.palette.primary.main,
+      fontSize: "18px",
     },
   })
 );

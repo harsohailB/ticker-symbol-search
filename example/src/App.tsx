@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       margin: "50px 0px 20px 0px",
+      fontWeight: "bolder",
     },
     codeTitle: {
       margin: "30px 0px 5px 0px",
@@ -50,6 +51,14 @@ function App() {
             into your web app
           </Typography>
 
+          <Typography
+            variant="h4"
+            text-align="center"
+            style={{ marginTop: "10px" }}
+          >
+            fast • draggable • intuitive
+          </Typography>
+
           <Button
             variant="contained"
             size="large"
@@ -70,6 +79,7 @@ function App() {
 
           <CodeBlock
             text={installCode}
+            language="javascript"
             showLineNumbers={false}
             theme={dracula}
             customStyle={{
@@ -92,7 +102,8 @@ function App() {
             text={usageCode}
             language="javascript"
             theme={dracula}
-            {...{ showLineNumbers: true, wrapLines: true }}
+            showLineNumbers
+            wrapLines
             customStyle={{
               borderRadius: "5px",
               boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
