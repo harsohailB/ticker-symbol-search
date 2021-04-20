@@ -20,8 +20,8 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "50%",
-      background: "rgba(255, 255, 255, 0.2)",
-      backdropFilter: "blur(50px)",
+      background: "grey",
+      // backdropFilter: "blur(50px)",
       borderRadius: "10px",
     },
     body: {

@@ -23,7 +23,7 @@ const Input = (props: {
   return (
     <InputBase
       className={classes.root}
-      placeholder="Search Symbddol"
+      placeholder="Search Symbol"
       value={props.search}
       onChange={(evt) => props.setSearch(evt.target.value)}
       autoFocus
