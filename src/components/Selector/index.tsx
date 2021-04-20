@@ -21,7 +21,10 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const Selector = (props: { symbols: SymbolData[] }) => {
+const Selector = (props: {
+  symbols: SymbolData[];
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   return (
@@ -29,7 +32,7 @@ const Selector = (props: { symbols: SymbolData[] }) => {
       <Table>
         <TableBody>
           {props.symbols.map((symbol: SymbolData) => (
-            <Symbol symbol={symbol} />
+            <Symbol symbol={symbol} callback={props.callback} />
           ))}
         </TableBody>
       </Table>

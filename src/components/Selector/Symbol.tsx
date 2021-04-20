@@ -28,6 +28,11 @@ const useStyles = makeStyles(() =>
     cell: {
       borderBottom: "1px solid rgba(255, 255, 255, 0.25)",
       padding: "5px 0px 5px 0px",
+
+      "& > em": {
+        fontStyle: "normal",
+        fontWeight: "900",
+      },
     },
     text: {
       color: "white",
@@ -48,11 +53,18 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const Symbol = (props: { symbol: SymbolData }) => {
+const Symbol = (props: {
+  symbol: SymbolData;
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   return (
-    <TableRow hover className={classes.row}>
+    <TableRow
+      hover
+      className={classes.row}
+      onClick={() => props.callback(props.symbol)}
+    >
       <TableCell
         padding="none"
         className={`${classes.cell} ${classes.text}`}

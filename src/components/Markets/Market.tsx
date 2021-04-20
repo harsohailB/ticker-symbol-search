@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  createStyles,
-  Grid,
-  makeStyles,
-  Theme,
-  Typography,
-} from "@material-ui/core";
+import { createStyles, Grid, makeStyles } from "@material-ui/core";
 import { MarketTypes } from "../../types/markets";
 
 const useStyles = makeStyles(() =>
@@ -44,12 +38,9 @@ const Market = (props: {
       className={classes.root}
       onClick={() => props.updateMarket(props.market as MarketTypes)}
     >
-      <Typography
-        className={props.selected ? classes.selectedText : classes.text}
-        variant="caption"
-      >
+      <p className={props.selected ? classes.selectedText : classes.text}>
         {props.market}
-      </Typography>
+      </p>
     </Grid>
   );
 };

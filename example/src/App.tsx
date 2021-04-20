@@ -11,7 +11,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import { CodeBlock, dracula } from "react-code-blocks";
+import { installCode, usageCode } from "./assets/codeBlocks";
 import { TickerSymbolSearch } from "ticker-symbol-search";
+import DataDialog from "./components/DataDialog";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +30,7 @@ function App() {
   const classes = useStyles();
 
   const [demoActivated, setDemoActivated] = useState<boolean>(false);
+  const [demoData, setDemoData] = useState<string>("");
 
   return (
     <div className="App">
@@ -66,9 +69,15 @@ function App() {
           </Typography>
 
           <CodeBlock
-            text="npm install ticker-symbol-search --save"
+            text={installCode}
             showLineNumbers={false}
             theme={dracula}
+            customStyle={{
+              borderRadius: "5px",
+              boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
+              fontSize: "1rem",
+              margin: "0px 0.75rem",
+            }}
           />
 
           <Typography
@@ -80,13 +89,7 @@ function App() {
           </Typography>
 
           <CodeBlock
-            text={`import { TickerSymbolSearch } from ticker-symbol-search
-
-export default () => {
-    return <TickerSymbolSearch 
-                       callback = { (data) => console.log(data) } 
-                />;
-}`}
+            text={usageCode}
             language="javascript"
             theme={dracula}
             {...{ showLineNumbers: true, wrapLines: true }}
@@ -98,7 +101,18 @@ export default () => {
             }}
           />
 
-          {demoActivated && <TickerSymbolSearch />}
+          {demoActivated && (
+            <TickerSymbolSearch
+              callback={(data: any) =>
+                setDemoData(JSON.stringify(data, null, 2))
+              }
+            />
+          )}
+          <DataDialog
+            open={demoData.length > 0}
+            data={demoData}
+            setData={setDemoData}
+          />
         </Grid>
       </ThemeProvider>
     </div>

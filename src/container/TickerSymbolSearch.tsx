@@ -15,13 +15,14 @@ import { MarketTypes } from "../types/markets";
 import useSearchSymbols from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
 import SkeletonLoading from "../components/Loading/SkeletonLoading";
+import { SymbolData } from "../types/symbol";
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "50%",
-      background: "grey",
-      // backdropFilter: "blur(50px)",
+      background: "rgba(128, 128, 128, 0.75)",
+      backdropFilter: "blur(20px)",
       borderRadius: "10px",
     },
     body: {
@@ -39,7 +40,9 @@ interface Query {
   market: MarketTypes;
 }
 
-export const TickerSymbolSearch = () => {
+export const TickerSymbolSearch = (props: {
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   const [query, setQuery] = useState<Query>({
@@ -81,7 +84,9 @@ export const TickerSymbolSearch = () => {
             />
             <Grid item className={classes.body}>
               {isLoading && <SkeletonLoading />}
-              {isSuccess && <Selector symbols={symbols} />}
+              {isSuccess && (
+                <Selector symbols={symbols} callback={props.callback} />
+              )}
               {symbols.length === 0 && (
                 <Typography variant="caption" className={classes.text}>
                   No symbols found...

@@ -43,6 +43,11 @@ const theme = createMuiTheme({
       fontSize: "1.5em",
       fontWeight: "lighter",
     },
+    h5: {
+      fontWeight: "bold",
+      fontSize: "2em",
+      fontFamily: "Playfair Display, serif",
+    },
   },
   // Overrides
   overrides: {
@@ -54,6 +59,12 @@ const theme = createMuiTheme({
       },
       textPrimary: {
         color: "#35CD99",
+      },
+    },
+    MuiDialog: {
+      paper: {
+        backgroundColor: "#131313",
+        color: "white",
       },
     },
   },
