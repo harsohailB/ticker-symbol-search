@@ -1,15 +1,19 @@
-import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
-import { useContext, useState } from "react";
+import {
+  createStyles,
+  Grid,
+  makeStyles,
+  Theme,
+  Typography,
+} from "@material-ui/core";
+import { useState } from "react";
 
-import Wrapper from "./Wrapper";
+import DraggableWrapper from "./DraggableWrapper";
 import Search from "../components/Search";
 import Markets from "../components/Markets";
 import { MarketTypes } from "../types/markets";
 import useSearchSymbols from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
-
-// Remove this after testing
-import { mockSymbols } from "../assets/mockSymbols";
+import SkeletonLoading from "../components/Loading/SkeletonLoading";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,6 +25,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     body: {
       margin: "0px 20px 0px 20px",
+      paddingBottom: "20px",
+    },
+    text: {
+      color: "rgba(255, 255, 255, 0.5)",
     },
   })
 );
@@ -37,7 +45,10 @@ export const TickerSymbolSearch = () => {
     search: "",
     market: MarketTypes.ALL,
   });
-  const [symbols] = useSearchSymbols(query.search, query.market);
+  const { symbols, isSuccess, isLoading, isError } = useSearchSymbols(
+    query.search,
+    query.market
+  );
 
   const updateSearchInput = (newSearch: string) => {
     setQuery((prevQuery: Query) => ({
@@ -54,7 +65,7 @@ export const TickerSymbolSearch = () => {
   };
 
   return (
-    <Wrapper>
+    <DraggableWrapper>
       <Grid container className={classes.root} direction="column">
         <Grid item>
           <Search search={query.search} setSearch={updateSearchInput} />
@@ -68,11 +79,22 @@ export const TickerSymbolSearch = () => {
               updateMarket={updateMarket}
             />
             <Grid item className={classes.body}>
-              <Selector symbols={mockSymbols} />
+              {isLoading && <SkeletonLoading />}
+              {isSuccess && <Selector symbols={symbols} />}
+              {symbols.length === 0 && (
+                <Typography variant="caption" className={classes.text}>
+                  No symbols found...
+                </Typography>
+              )}
+              {isError && (
+                <Typography variant="caption" className={classes.text}>
+                  There was an error fetching symbols...
+                </Typography>
+              )}
             </Grid>
           </div>
         )}
       </Grid>
-    </Wrapper>
+    </DraggableWrapper>
   );
 };

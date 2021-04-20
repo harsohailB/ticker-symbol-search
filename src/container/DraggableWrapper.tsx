@@ -5,12 +5,13 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position: "absolute",
+      top: "30%",
       zIndex: 100,
     },
   })
 );
 
-const Wrapper = (props: { children: any }) => {
+const DraggableWrapper = (props: { children: any }) => {
   const classes = useStyles();
 
   return (
@@ -28,4 +29,4 @@ const Wrapper = (props: { children: any }) => {
   );
 };
 
-export default Wrapper;
+export default DraggableWrapper;
