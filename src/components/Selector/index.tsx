@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createStyles,
   Grid,
@@ -11,7 +12,7 @@ import {
 import { SymbolData } from "../../types/symbol";
 import Symbol from "./Symbol";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxHeight: "400px",

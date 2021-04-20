@@ -1,5 +1,6 @@
+import React from "react";
 import { createStyles, makeStyles, Theme, InputBase } from "@material-ui/core";
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "75%",
@@ -22,7 +23,7 @@ const Input = (props: {
   return (
     <InputBase
       className={classes.root}
-      placeholder="Search Symbol"
+      placeholder="Search Symbddol"
       value={props.search}
       onChange={(evt) => props.setSearch(evt.target.value)}
       autoFocus

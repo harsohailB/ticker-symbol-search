@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createStyles,
   Grid,
@@ -9,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { SymbolData } from "../../types/symbol";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       margin: "2px 0px 2px 0px",

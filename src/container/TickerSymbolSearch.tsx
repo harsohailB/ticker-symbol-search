@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createStyles,
   Grid,
@@ -15,7 +16,7 @@ import useSearchSymbols from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
 import SkeletonLoading from "../components/Loading/SkeletonLoading";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "50%",

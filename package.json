@@ -1,7 +1,9 @@
 {
-  "name": "symbol-selector",
+  "name": "ticker-symbol-search",
   "version": "0.1.0",
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -14,18 +16,24 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "concurrently": "^6.0.2",
     "react-draggable": "^4.4.3",
     "react-scripts": "4.0.3",
+    "rimraf": "^3.0.2",
     "serve": "^11.3.2",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
+  "peerDependencies": {
+    "react": "16 || 17",
+    "react-dom": "16 || 17"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start:example": "cd example && yarn start",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rimraf ./dist && tsc",
+    "build:watch": "rimraf ./dist && tsc --watch",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

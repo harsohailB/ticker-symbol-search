@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createStyles,
   Grid,
@@ -7,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { MarketTypes } from "../../types/markets";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       background: "rgba(0, 0, 0, 0.25)",

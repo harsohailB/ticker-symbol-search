@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
+import { TickerSymbolSearch } from "ticker-symbol-search";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <TickerSymbolSearch />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
