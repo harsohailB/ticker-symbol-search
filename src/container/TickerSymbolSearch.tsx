@@ -6,7 +6,7 @@ import DraggableWrapper from "./DraggableWrapper";
 import Search from "../components/Search";
 import Markets from "../components/Markets";
 import { MarketTypes } from "../types/markets";
-import useSearchSymbols from "../hooks/useSearchSymbols";
+import { useSearchSymbols } from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
 import SkeletonLoading from "../components/Loading/SkeletonLoading";
 import { SymbolData } from "../types/symbol";

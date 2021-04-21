@@ -35,7 +35,7 @@ const reducer = (state: RequestStatus, action: Types) => {
   }
 };
 
-const useSearchSymbols = (search: string, market: MarketTypes) => {
+export const useSearchSymbols = (search: string, market: MarketTypes) => {
   const [symbols, setSymbols] = useState<SymbolData[]>([]);
   const [status, dispatchStatus] = useReducer(reducer, initialState);
 
@@ -59,5 +59,3 @@ const useSearchSymbols = (search: string, market: MarketTypes) => {
 
   return { symbols, ...status };
 };
-
-export default useSearchSymbols;

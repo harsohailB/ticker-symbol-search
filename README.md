@@ -19,13 +19,15 @@
 
 ## Installation
 
-`npm install symbol-search`
+`npm install ticker-symbol-search`
 
 or
 
-`yarn add symbol-search`
+`yarn add ticker-symbol-search`
 
 ## Quick Start
+
+### Search Component
 
 ```javascript
 import { TickerSymbolSearch } from ticker-symbol-search
@@ -37,7 +39,28 @@ export default () => {
 }
 ```
 
-### Data Fetched
+### Hook
+
+```javascript
+import { useSearchSymbols } from ticker-symbol-search
+
+export default () => {
+    const { symbols,
+            isSuccess,
+            isLoading,
+            isError } = useSearchSymbols(search, market);
+}
+```
+
+where,
+
+`search` query entered by user
+
+`market` "ALL" | "Futures" | "Forex" | "CFD" | "Crypto" | "Index" | "Economic"
+
+### Symbol Data Fetched
+
+Through callback or hook
 
 ```json
 {
