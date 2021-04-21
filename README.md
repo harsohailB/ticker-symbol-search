@@ -1,4 +1,21 @@
-# ticker-symbol-search
+<p align="center">
+  <a href="https://github.com/harsohailB/ticker-symbol-search">
+    <img src="example/src/assets/images/header.png" alt="Logo" width="50%" height="auto">
+  </a>
+
+  <h2 align="center">Ticker Symbol Search</h2>
+
+  <p align="center">
+    Seamlessly integrate a search engine to find live ticker symbols into your web app
+    <br />
+    <br />
+    <a href="https://github.com/harsohailB/ticker-symbol-search">View Demo</a>
+    ·
+    <a href="https://github.com/harsohailB/ticker-symbol-search/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/harsohailB/ticker-symbol-search/issues">Request Feature</a>
+  </p>
+</p>
 
 ## Installation
 
