@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useReducer, useState } from "react";
-import _, { DebouncedFunc } from "lodash";
+import { useEffect, useReducer, useState } from "react";
 
 import { getSymbols } from "../actions/symbols";
 import { MarketTypes } from "../types/markets";
