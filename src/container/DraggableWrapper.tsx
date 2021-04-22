@@ -1,16 +1,18 @@
+import React from "react";
 import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import Draggable from "react-draggable";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       position: "absolute",
+      top: "30%",
       zIndex: 100,
     },
   })
 );
 
-const Wrapper = (props: { children: any }) => {
+const DraggableWrapper = (props: { children: any }) => {
   const classes = useStyles();
 
   return (
@@ -28,4 +30,4 @@ const Wrapper = (props: { children: any }) => {
   );
 };
 
-export default Wrapper;
+export default DraggableWrapper;

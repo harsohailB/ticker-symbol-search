@@ -1,8 +1,9 @@
+import React from "react";
 import { createStyles, Grid, makeStyles, Theme, Icon } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Input from "./Input";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: "10px",

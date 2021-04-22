@@ -1,8 +1,9 @@
+import React from "react";
 import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import { MarketTypes } from "../../types/markets";
 import Market from "./Market";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       borderTop: "1px solid rgba(255, 255, 255, 0.25)",
@@ -27,6 +28,7 @@ const Markets = (props: {
     >
       {props.markets.map((market: string) => (
         <Market
+          key={market}
           market={market}
           selected={props.selectedMarket === market}
           updateMarket={props.updateMarket}

@@ -1,26 +1,30 @@
-import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
-import { useContext, useState } from "react";
+import React from "react";
+import { createStyles, Grid, makeStyles } from "@material-ui/core";
+import { useState } from "react";
 
-import Wrapper from "./Wrapper";
+import DraggableWrapper from "./DraggableWrapper";
 import Search from "../components/Search";
 import Markets from "../components/Markets";
 import { MarketTypes } from "../types/markets";
-import useSearchSymbols from "../hooks/useSearchSymbols";
+import { useSearchSymbols } from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
+import SkeletonLoading from "../components/Loading/SkeletonLoading";
+import { SymbolData } from "../types/symbol";
 
-// Remove this after testing
-import { mockSymbols } from "../assets/mockSymbols";
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "50%",
-      background: "rgba(255, 255, 255, 0.2)",
-      backdropFilter: "blur(50px)",
+      background: "rgba(128, 128, 128, 0.75)",
+      backdropFilter: "blur(20px)",
       borderRadius: "10px",
     },
     body: {
       margin: "0px 20px 0px 20px",
+      paddingBottom: "20px",
+    },
+    text: {
+      color: "rgba(255, 255, 255, 0.5)",
     },
   })
 );
@@ -30,14 +34,19 @@ interface Query {
   market: MarketTypes;
 }
 
-export const TickerSymbolSearch = () => {
+export const TickerSymbolSearch = (props: {
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   const [query, setQuery] = useState<Query>({
     search: "",
     market: MarketTypes.ALL,
   });
-  const [symbols] = useSearchSymbols(query.search, query.market);
+  const { symbols, isSuccess, isLoading, isError } = useSearchSymbols(
+    query.search,
+    query.market
+  );
 
   const updateSearchInput = (newSearch: string) => {
     setQuery((prevQuery: Query) => ({
@@ -54,7 +63,7 @@ export const TickerSymbolSearch = () => {
   };
 
   return (
-    <Wrapper>
+    <DraggableWrapper>
       <Grid container className={classes.root} direction="column">
         <Grid item>
           <Search search={query.search} setSearch={updateSearchInput} />
@@ -68,11 +77,22 @@ export const TickerSymbolSearch = () => {
               updateMarket={updateMarket}
             />
             <Grid item className={classes.body}>
-              <Selector symbols={mockSymbols} />
+              {isLoading && <SkeletonLoading />}
+              {isSuccess && (
+                <Selector symbols={symbols} callback={props.callback} />
+              )}
+              {isSuccess && symbols.length === 0 && (
+                <p className={classes.text}>No symbols found...</p>
+              )}
+              {isError && (
+                <p className={classes.text}>
+                  There was an error fetching symbols...
+                </p>
+              )}
             </Grid>
           </div>
         )}
       </Grid>
-    </Wrapper>
+    </DraggableWrapper>
   );
 };

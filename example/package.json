@@ -1,9 +1,7 @@
 {
-  "name": "ticker-symbol-search",
+  "name": "ticker-symbol-search-example",
   "version": "0.1.0",
   "private": true,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -12,30 +10,20 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
-    "@types/lodash": "^4.14.168",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "axios": "^0.21.1",
-    "concurrently": "^6.0.2",
-    "lodash": "^4.17.21",
-    "react-draggable": "^4.4.3",
+    "react": "^17.0.2",
+    "react-code-blocks": "^0.0.8",
+    "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "rimraf": "^3.0.2",
-    "serve": "^11.3.2",
+    "ticker-symbol-search": "../",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
-  "peerDependencies": {
-    "react": "16 || 17",
-    "react-dom": "16 || 17"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "rimraf ./dist && tsc",
-    "build:watch": "rimraf ./dist && tsc --watch",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

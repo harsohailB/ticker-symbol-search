@@ -12,7 +12,10 @@ export const getSymbols = async (queryParams: SymbolQueryParams) => {
       text: queryParams.text,
       hl: queryParams.hl,
       exchange: "",
-      type: queryParams.type === MarketTypes.ALL ? "" : queryParams.type,
+      type:
+        queryParams.type === MarketTypes.ALL
+          ? ""
+          : queryParams.type.toLowerCase(),
       lang: "en",
       domain: "production",
     },

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createStyles,
   Grid,
@@ -11,7 +12,7 @@ import {
 import { SymbolData } from "../../types/symbol";
 import Symbol from "./Symbol";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxHeight: "400px",
@@ -20,7 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Selector = (props: { symbols: SymbolData[] }) => {
+const Selector = (props: {
+  symbols: SymbolData[];
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   return (
@@ -28,7 +32,11 @@ const Selector = (props: { symbols: SymbolData[] }) => {
       <Table>
         <TableBody>
           {props.symbols.map((symbol: SymbolData) => (
-            <Symbol symbol={symbol} />
+            <Symbol
+              key={symbol.symbol}
+              symbol={symbol}
+              callback={props.callback}
+            />
           ))}
         </TableBody>
       </Table>

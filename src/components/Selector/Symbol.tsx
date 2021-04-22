@@ -1,15 +1,14 @@
+import React from "react";
 import {
   createStyles,
   Grid,
   makeStyles,
   TableCell,
   TableRow,
-  Theme,
-  Typography,
 } from "@material-ui/core";
 import { SymbolData } from "../../types/symbol";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       margin: "2px 0px 2px 0px",
@@ -27,6 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
     cell: {
       borderBottom: "1px solid rgba(255, 255, 255, 0.25)",
       padding: "5px 0px 5px 0px",
+
+      "& > em": {
+        fontStyle: "normal",
+        fontWeight: "900",
+      },
     },
     text: {
       color: "white",
@@ -47,11 +51,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Symbol = (props: { symbol: SymbolData }) => {
+const Symbol = (props: {
+  symbol: SymbolData;
+  callback: (symbolData: SymbolData) => void;
+}) => {
   const classes = useStyles();
 
   return (
-    <TableRow hover className={classes.row}>
+    <TableRow
+      hover
+      className={classes.row}
+      onClick={() => props.callback(props.symbol)}
+    >
       <TableCell
         padding="none"
         className={`${classes.cell} ${classes.text}`}

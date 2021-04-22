@@ -1,5 +1,6 @@
+import React from "react";
 import { createStyles, makeStyles, Theme, InputBase } from "@material-ui/core";
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "75%",
