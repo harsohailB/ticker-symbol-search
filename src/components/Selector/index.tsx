@@ -32,7 +32,11 @@ const Selector = (props: {
       <Table>
         <TableBody>
           {props.symbols.map((symbol: SymbolData) => (
-            <Symbol symbol={symbol} callback={props.callback} />
+            <Symbol
+              key={symbol.symbol}
+              symbol={symbol}
+              callback={props.callback}
+            />
           ))}
         </TableBody>
       </Table>

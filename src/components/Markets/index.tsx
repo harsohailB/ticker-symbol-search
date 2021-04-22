@@ -28,6 +28,7 @@ const Markets = (props: {
     >
       {props.markets.map((market: string) => (
         <Market
+          key={market}
           market={market}
           selected={props.selectedMarket === market}
           updateMarket={props.updateMarket}
