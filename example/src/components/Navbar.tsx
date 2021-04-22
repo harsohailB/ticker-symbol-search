@@ -3,6 +3,7 @@ import {
   Button,
   createStyles,
   Grid,
+  IconButton,
   makeStyles,
   Theme,
   Toolbar,
@@ -31,18 +32,10 @@ const Navbar = () => {
   return (
     <AppBar position="static" elevation={0} className={classes.root}>
       <Toolbar>
-        <Grid justify="space-between" container>
-          <p>test</p>
-          <Button
-            variant="contained"
-            size="medium"
-            color="primary"
-            startIcon={<GitHubIcon />}
-            className={classes.button}
-            href="https://github.com/harsohailB/ticker-symbol-search"
-          >
-            Github
-          </Button>
+        <Grid justify="flex-end" container>
+          <IconButton href="https://github.com/harsohailB/ticker-symbol-search">
+            <GitHubIcon />
+          </IconButton>
         </Grid>
       </Toolbar>
     </AppBar>

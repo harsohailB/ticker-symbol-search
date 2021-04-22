@@ -7,6 +7,8 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: "10px",
+      backgroundColor: "transparent",
+      margin: "0",
     },
     icon: {
       color: "rgba(188, 204, 221, 0.25)",

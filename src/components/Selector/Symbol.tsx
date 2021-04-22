@@ -48,6 +48,19 @@ const useStyles = makeStyles(() =>
       marginRight: "5px",
       color: "rgba(255, 255, 255, 0.25)",
     },
+    webOnly: {
+      "@media only screen and (max-width: 1000px)": {
+        display: "none",
+      },
+    },
+    alignRight: {
+      "@media only screen and (max-width: 1000px)": {
+        textAlign: "right",
+        maxWidth: "100px",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+      },
+    },
   })
 );
 
@@ -70,10 +83,14 @@ const Symbol = (props: {
       />
       <TableCell
         padding="none"
-        className={`${classes.cell} ${classes.text}`}
+        className={`${classes.cell} ${classes.text} ${classes.alignRight}`}
         dangerouslySetInnerHTML={{ __html: props.symbol.description }}
       />
-      <TableCell padding="none" align="right" className={classes.cell}>
+      <TableCell
+        padding="none"
+        align="right"
+        className={`${classes.cell} ${classes.webOnly}`}
+      >
         <span className={classes.type}>{props.symbol.type}</span>
         <span className={classes.text}>{props.symbol.exchange}</span>
       </TableCell>

@@ -8,6 +8,10 @@ const useStyles = makeStyles(() =>
     root: {
       borderTop: "1px solid rgba(255, 255, 255, 0.25)",
       padding: "20px",
+      "@media only screen and (max-width: 875px)": {
+        padding: "5px 20px 5px 20px",
+        justifyContent: "center",
+      },
     },
   })
 );

@@ -15,14 +15,29 @@ import { installCode, usageCode } from "./assets/codeBlocks";
 import { TickerSymbolSearch } from "ticker-symbol-search";
 import DataDialog from "./components/DataDialog";
 
+import headerImage from "./assets/images/header.png";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    image: {
+      width: "80%",
+      marginBottom: "30px",
+      "@media only screen and (min-width: 500px)": {
+        width: "20%",
+        marginTop: "-8vh",
+      },
+    },
     button: {
       margin: "50px 0px 20px 0px",
       fontWeight: "bolder",
     },
     codeTitle: {
       margin: "30px 0px 5px 0px",
+    },
+    webOnly: {
+      "@media only screen and (max-width: 500px)": {
+        display: "none",
+      },
     },
   })
 );
@@ -44,6 +59,8 @@ function App() {
           justify="space-around"
           alignItems="center"
         >
+          <img alt="header image" src={headerImage} className={classes.image} />
+
           <Typography variant="h1">ticker-symbol-search</Typography>
 
           <Typography variant="h3" text-align="center">
@@ -72,45 +89,50 @@ function App() {
           <Typography
             variant="h4"
             text-align="center"
-            className={classes.codeTitle}
+            className={`${classes.codeTitle} ${classes.webOnly}`}
           >
             install using npm or yarn
           </Typography>
 
-          <CodeBlock
-            text={installCode}
-            language="javascript"
-            showLineNumbers={false}
-            theme={dracula}
-            customStyle={{
-              borderRadius: "5px",
-              boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
-              fontSize: "1rem",
-              margin: "0px 0.75rem",
-            }}
-          />
+          <div className={classes.webOnly}>
+            <CodeBlock
+              text={installCode}
+              language="javascript"
+              showLineNumbers={false}
+              theme={dracula}
+              customStyle={{
+                borderRadius: "5px",
+                boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
+                fontSize: "1rem",
+                margin: "0px 0.75rem",
+              }}
+            />
+          </div>
 
           <Typography
             variant="h4"
             text-align="center"
-            className={classes.codeTitle}
+            className={`${classes.codeTitle} ${classes.webOnly}`}
           >
             simply import and pass in a callback
           </Typography>
 
-          <CodeBlock
-            text={usageCode}
-            language="javascript"
-            theme={dracula}
-            showLineNumbers
-            wrapLines
-            customStyle={{
-              borderRadius: "5px",
-              boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
-              fontSize: "1rem",
-              margin: "0px 0.75rem",
-            }}
-          />
+          <div className={classes.webOnly}>
+            <CodeBlock
+              text={usageCode}
+              language="javascript"
+              theme={dracula}
+              showLineNumbers
+              className={classes.webOnly}
+              wrapLines
+              customStyle={{
+                borderRadius: "5px",
+                boxShadow: "1px 2px 3px rgba(0,0,0,0.35)",
+                fontSize: "1rem",
+                margin: "0px 0.75rem",
+              }}
+            />
+          </div>
 
           {demoActivated && (
             <TickerSymbolSearch

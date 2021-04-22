@@ -34,10 +34,20 @@ const theme = createMuiTheme({
       fontWeight: "bold",
       fontSize: "5em",
       fontFamily: "Playfair Display, serif",
+      "@media only screen and (max-width: 900px)": {
+        fontSize: "9vw",
+      },
     },
     h3: {
       fontSize: "2em",
       fontWeight: "lighter",
+      "@media only screen and (max-width: 1250px)": {
+        fontSize: "2.5vw",
+      },
+      "@media only screen and (max-width: 768px)": {
+        fontSize: "1em",
+        textAlign: "center",
+      },
     },
     h4: {
       fontSize: "1.5em",

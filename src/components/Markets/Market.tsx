@@ -6,10 +6,13 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       background: "rgba(0, 0, 0, 0.25)",
-      margin: "0px 12px 0px 0px",
+      margin: "5px 12px 5px 0px",
       borderRadius: "20px",
       cursor: "pointer",
       width: "max-content",
+      "@media only screen and (max-width: 768px)": {
+        fontSize: "10px",
+      },
     },
     text: {
       margin: 0,

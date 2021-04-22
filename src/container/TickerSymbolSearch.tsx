@@ -14,7 +14,8 @@ import { SymbolData } from "../types/symbol";
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: "50%",
+      width: "75%",
+      maxWidth: "800px",
       background: "rgba(128, 128, 128, 0.75)",
       backdropFilter: "blur(20px)",
       borderRadius: "10px",
