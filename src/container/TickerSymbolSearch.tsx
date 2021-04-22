@@ -81,7 +81,7 @@ export const TickerSymbolSearch = (props: {
               {isSuccess && (
                 <Selector symbols={symbols} callback={props.callback} />
               )}
-              {symbols.length === 0 && (
+              {isSuccess && symbols.length === 0 && (
                 <p className={classes.text}>No symbols found...</p>
               )}
               {isError && (

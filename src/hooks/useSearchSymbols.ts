@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
+import _, { DebouncedFunc } from "lodash";
 
 import { getSymbols } from "../actions/symbols";
 import { MarketTypes } from "../types/markets";
@@ -38,23 +39,36 @@ const reducer = (state: RequestStatus, action: Types) => {
 export const useSearchSymbols = (search: string, market: MarketTypes) => {
   const [symbols, setSymbols] = useState<SymbolData[]>([]);
   const [status, dispatchStatus] = useReducer(reducer, initialState);
+  const [timerId, setTimerId] = useState<NodeJS.Timeout | null>();
 
-  const params: SymbolQueryParams = {
-    text: search,
-    hl: 1,
-    type: market,
-  };
-
+  // Debounces API call to fetch symbols
   useEffect(() => {
     dispatchStatus(Types.LOADING);
-    getSymbols(params)
-      .then((symbolsResponse: SymbolData[]) => {
-        setSymbols(symbolsResponse);
-        dispatchStatus(Types.SUCCESS);
-      })
-      .catch((error) => {
-        dispatchStatus(Types.ERROR);
-      });
+
+    const params: SymbolQueryParams = {
+      text: search,
+      hl: 1,
+      type: market,
+    };
+
+    const newTimerId: NodeJS.Timeout = setTimeout(() => {
+      getSymbols(params)
+        .then((symbolsResponse: SymbolData[]) => {
+          setSymbols(symbolsResponse);
+          dispatchStatus(Types.SUCCESS);
+        })
+        .catch(() => {
+          dispatchStatus(Types.ERROR);
+        });
+    }, 500);
+
+    if (timerId == null) {
+      setTimerId(newTimerId);
+    } else {
+      // Clears queued API call with new one with 500ms timeout
+      clearTimeout(timerId);
+      setTimerId(newTimerId);
+    }
   }, [search, market]);
 
   return { symbols, ...status };
