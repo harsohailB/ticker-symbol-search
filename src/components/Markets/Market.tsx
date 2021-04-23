@@ -1,51 +1,40 @@
 import React from "react";
-import { createStyles, Grid, makeStyles } from "@material-ui/core";
 import { MarketTypes } from "../../types/markets";
+import styled from "styled-components";
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      background: "rgba(0, 0, 0, 0.25)",
-      margin: "5px 12px 5px 0px",
-      borderRadius: "20px",
-      cursor: "pointer",
-      width: "max-content",
-      "@media only screen and (max-width: 768px)": {
-        fontSize: "10px",
-      },
-    },
-    text: {
-      margin: 0,
-      color: "white",
-      padding: "6px 8px 6px 8px",
-    },
-    selectedText: {
-      margin: 0,
-      color: "white",
-      padding: "6px 8px 6px 8px",
-      fontWeight: "bold",
-    },
-  })
-);
+interface TextProps {
+  selected: boolean;
+}
 
 const Market = (props: {
   market: string;
   selected: boolean;
   updateMarket: (newMarket: MarketTypes) => void;
 }) => {
-  const classes = useStyles();
-
   return (
-    <Grid
-      item
-      className={classes.root}
-      onClick={() => props.updateMarket(props.market as MarketTypes)}
-    >
-      <p className={props.selected ? classes.selectedText : classes.text}>
-        {props.market}
-      </p>
-    </Grid>
+    <Wrapper onClick={() => props.updateMarket(props.market as MarketTypes)}>
+      <Text selected={props.selected}>{props.market}</Text>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  background: ${({ theme }) => theme.markets.background};
+  margin: 5px 12px 5px 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: max-content;
+
+  @media (max-width: 768px): {
+    font-size: 10px;
+  }, 
+`;
+
+const Text = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.markets.color};
+  padding: 6px 8px 6px 8px;
+  font-weight: ${(props: TextProps) => (props.selected ? "bold" : "normal")};
+`;
 
 export default Market;

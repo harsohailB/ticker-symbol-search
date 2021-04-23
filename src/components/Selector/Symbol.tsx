@@ -1,101 +1,77 @@
 import React from "react";
-import {
-  createStyles,
-  Grid,
-  makeStyles,
-  TableCell,
-  TableRow,
-} from "@material-ui/core";
 import { SymbolData } from "../../types/symbol";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      margin: "2px 0px 2px 0px",
-      padding: "2px",
-      cursor: "pointer",
-      borderRadius: "4px",
-
-      "&:hover": {
-        background: "rgba(255, 255, 255, 0.4)",
-      },
-    },
-    row: {
-      cursor: "pointer",
-    },
-    cell: {
-      borderBottom: "1px solid rgba(255, 255, 255, 0.25)",
-      padding: "5px 0px 5px 0px",
-
-      "& > em": {
-        fontStyle: "normal",
-        fontWeight: "900",
-      },
-    },
-    text: {
-      color: "white",
-      fontWeight: 100,
-    },
-    description: {
-      width: "50%",
-      alignText: "left",
-    },
-    pair: {
-      display: "flex",
-      alignItems: "center",
-    },
-    type: {
-      marginRight: "5px",
-      color: "rgba(255, 255, 255, 0.25)",
-    },
-    webOnly: {
-      "@media only screen and (max-width: 1000px)": {
-        display: "none",
-      },
-    },
-    alignRight: {
-      "@media only screen and (max-width: 1000px)": {
-        textAlign: "right",
-        maxWidth: "100px",
-        whiteSpace: "nowrap",
-        textOverflow: "ellipsis",
-      },
-    },
-  })
-);
+import styled from "styled-components";
 
 const Symbol = (props: {
   symbol: SymbolData;
   callback: (symbolData: SymbolData) => void;
 }) => {
-  const classes = useStyles();
-
   return (
-    <TableRow
-      hover
-      className={classes.row}
-      onClick={() => props.callback(props.symbol)}
-    >
-      <TableCell
-        padding="none"
-        className={`${classes.cell} ${classes.text}`}
+    <TableRow onClick={() => props.callback(props.symbol)}>
+      <TableDataCell
+        align="left"
         dangerouslySetInnerHTML={{ __html: props.symbol.symbol }}
       />
-      <TableCell
-        padding="none"
-        className={`${classes.cell} ${classes.text} ${classes.alignRight}`}
+      <TableDataCell
+        align="left"
+        switch
         dangerouslySetInnerHTML={{ __html: props.symbol.description }}
       />
-      <TableCell
-        padding="none"
-        align="right"
-        className={`${classes.cell} ${classes.webOnly}`}
-      >
-        <span className={classes.type}>{props.symbol.type}</span>
-        <span className={classes.text}>{props.symbol.exchange}</span>
-      </TableCell>
+      <TableDataCell align="right" webOnly>
+        <Type>{props.symbol.type}</Type>
+        <span>{props.symbol.exchange}</span>
+      </TableDataCell>
     </TableRow>
   );
 };
+
+interface TableDataCellProps {
+  webOnly?: boolean;
+  align?: string;
+  switch?: boolean;
+}
+
+const TableRow = styled.tr`
+  cursor: pointer;
+  width: 100%;
+`;
+
+const TableDataCell = styled.td`
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px 0px 5px 0px;
+  text-align: ${(props: TableDataCellProps) => props.align};
+  color: ${({ theme }) => theme.selector.color};
+  font-weight: 300;
+
+  & > em {
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  ${(props: TableDataCellProps) =>
+    props.webOnly &&
+    `
+      @media (max-width: 1000px) {
+        display: none;
+      };
+  `}
+
+  ${(props: TableDataCellProps) =>
+    props.switch &&
+    `
+      padding-left: 20px;
+      @media (max-width: 1000px) {
+        text-align: right;
+        max-width: 100px;
+        white-space: nowrap;
+        text-overflow: hidden;
+      };
+  `}
+`;
+
+const Type = styled.span`
+  margin-right: 5px;
+  color: rgba(255, 255, 255, 0.5);
+`;
 
 export default Symbol;

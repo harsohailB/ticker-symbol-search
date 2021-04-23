@@ -1,6 +1,5 @@
 import { Dialog, DialogTitle, Typography } from "@material-ui/core";
 import React from "react";
-import { CodeBlock, dracula } from "react-code-blocks";
 
 const DataDialog = (props: {
   open: boolean;

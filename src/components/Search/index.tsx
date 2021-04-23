@@ -1,40 +1,32 @@
 import React from "react";
-import { createStyles, Grid, makeStyles, Theme, Icon } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Input from "./Input";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      padding: "10px",
-      backgroundColor: "transparent",
-      margin: "0",
-    },
-    icon: {
-      color: "rgba(188, 204, 221, 0.25)",
-    },
-  })
-);
+import styled from "styled-components";
 
 const Search = (props: {
   search: string;
   setSearch: (newSearch: string) => void;
 }) => {
-  const classes = useStyles();
-
   return (
-    <Grid
-      container
-      direction="row"
-      className={classes.root}
-      alignItems="center"
-    >
-      <Icon className={classes.icon}>
+    <Wrapper>
+      <Icon>
         <SearchIcon />
       </Icon>
       <Input search={props.search} setSearch={props.setSearch} />
-    </Grid>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  padding: 10px;
+  background-color: transparent;
+  margin: 0;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.div`
+  color: ${({ theme }) => theme.search.icon.color};
+`;
 
 export default Search;

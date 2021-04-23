@@ -15,7 +15,7 @@ import { installCode, usageCode } from "./assets/codeBlocks";
 import { TickerSymbolSearch } from "ticker-symbol-search";
 import DataDialog from "./components/DataDialog";
 
-import headerImage from "./assets/images/header.png";
+import logo from "./assets/images/logo.svg";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -59,7 +59,7 @@ function App() {
           justify="space-around"
           alignItems="center"
         >
-          <img alt="header image" src={headerImage} className={classes.image} />
+          <img alt="header image" src={logo} className={classes.image} />
 
           <Typography variant="h1">ticker-symbol-search</Typography>
 

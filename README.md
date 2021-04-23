@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/harsohailB/ticker-symbol-search">
-    <img src="example/src/assets/images/header.png" alt="Logo" width="50%" height="auto">
+    <img src="example/src/assets/images/logo.svg" alt="Logo" width="50%" height="auto">
   </a>
 
   <h2 align="center">Ticker Symbol Search</h2>
