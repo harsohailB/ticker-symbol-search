@@ -34,11 +34,17 @@ interface TableDataCellProps {
 const TableRow = styled.tr`
   cursor: pointer;
   width: 100%;
+  border: none;
+  transition: all 1s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.markets.background};
+  }
 `;
 
 const TableDataCell = styled.td`
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 5px 0px 5px 0px;
+  padding: 8px 5px 8px 0px;
   text-align: ${(props: TableDataCellProps) => props.align};
   color: ${({ theme }) => theme.selector.color};
   font-weight: 300;
@@ -64,7 +70,8 @@ const TableDataCell = styled.td`
         text-align: right;
         max-width: 100px;
         white-space: nowrap;
-        text-overflow: hidden;
+        overflow: hidden;
+        text-overflow: ellipsis;
       };
   `}
 `;

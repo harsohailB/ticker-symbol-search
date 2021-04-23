@@ -37,7 +37,7 @@ const DraggableWrapper = (props: { theme?: Theme; children: JSX.Element }) => {
     <ThemeProvider
       theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
     >
-      <Draggable disabled={isMobile}>
+      <Draggable disabled={isMobile} bounds="parent">
         <Wrapper>{props.children}</Wrapper>
       </Draggable>
     </ThemeProvider>

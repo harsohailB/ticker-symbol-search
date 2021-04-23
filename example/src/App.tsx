@@ -59,7 +59,7 @@ function App() {
           justify="space-around"
           alignItems="center"
         >
-          <img alt="header image" src={logo} className={classes.image} />
+          <img alt="logo" src={logo} className={classes.image} />
 
           <Typography variant="h1">ticker-symbol-search</Typography>
 
