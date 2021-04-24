@@ -44,7 +44,7 @@ const TableRow = styled.tr`
 
 const TableDataCell = styled.td`
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 8px 5px 8px 0px;
+  padding: 8px 5px 8px 5px;
   text-align: ${(props: TableDataCellProps) => props.align};
   color: ${({ theme }) => theme.selector.color};
   font-weight: 300;

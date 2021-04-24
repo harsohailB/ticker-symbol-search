@@ -1,5 +1,4 @@
 import React from "react";
-import { InputBase } from "@material-ui/core";
 import styled from "styled-components";
 
 const Input = (props: {
@@ -7,16 +6,21 @@ const Input = (props: {
   setSearch: (newSearch: string) => void;
 }) => {
   return (
-    <StyledInputBase
+    <StyledInput
       placeholder="Search Symbol"
       value={props.search}
       onChange={(evt) => props.setSearch(evt.target.value)}
       autoFocus
+      type="text"
     />
   );
 };
 
-const StyledInputBase = styled(InputBase)`
+const StyledInput = styled.input`
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
   width: 75%;
   margin-left: 10px;
   color: ${({ theme }) => theme.search.input.color};
