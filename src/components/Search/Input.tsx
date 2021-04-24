@@ -1,28 +1,13 @@
 import React from "react";
-import { createStyles, makeStyles, Theme, InputBase } from "@material-ui/core";
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: "75%",
-      marginLeft: "10px",
-      color: "white",
-
-      "&::placeholder": {
-        color: "rgba(188, 204, 221, 0.25)",
-      },
-    },
-  })
-);
+import { InputBase } from "@material-ui/core";
+import styled from "styled-components";
 
 const Input = (props: {
   search: string;
   setSearch: (newSearch: string) => void;
 }) => {
-  const classes = useStyles();
-
   return (
-    <InputBase
-      className={classes.root}
+    <StyledInputBase
       placeholder="Search Symbol"
       value={props.search}
       onChange={(evt) => props.setSearch(evt.target.value)}
@@ -30,5 +15,15 @@ const Input = (props: {
     />
   );
 };
+
+const StyledInputBase = styled(InputBase)`
+  width: 75%;
+  margin-left: 10px;
+  color: ${({ theme }) => theme.search.input.color};
+
+  &:placeholder {
+    color: ${({ theme }) => theme.search.input.placeholderColor};
+  }
+`;
 
 export default Input;

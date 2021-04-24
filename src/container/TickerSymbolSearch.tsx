@@ -1,6 +1,6 @@
 import React from "react";
-import { createStyles, Grid, makeStyles } from "@material-ui/core";
 import { useState } from "react";
+import styled from "styled-components";
 
 import DraggableWrapper from "./DraggableWrapper";
 import Search from "../components/Search";
@@ -10,24 +10,7 @@ import { useSearchSymbols } from "../hooks/useSearchSymbols";
 import Selector from "../components/Selector";
 import SkeletonLoading from "../components/Loading/SkeletonLoading";
 import { SymbolData } from "../types/symbol";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: "50%",
-      background: "rgba(128, 128, 128, 0.75)",
-      backdropFilter: "blur(20px)",
-      borderRadius: "10px",
-    },
-    body: {
-      margin: "0px 20px 0px 20px",
-      paddingBottom: "20px",
-    },
-    text: {
-      color: "rgba(255, 255, 255, 0.5)",
-    },
-  })
-);
+import { Theme } from "../types/theme";
 
 interface Query {
   search: string;
@@ -36,9 +19,8 @@ interface Query {
 
 export const TickerSymbolSearch = (props: {
   callback: (symbolData: SymbolData) => void;
+  theme?: Theme;
 }) => {
-  const classes = useStyles();
-
   const [query, setQuery] = useState<Query>({
     search: "",
     market: MarketTypes.ALL,
@@ -63,11 +45,9 @@ export const TickerSymbolSearch = (props: {
   };
 
   return (
-    <DraggableWrapper>
-      <Grid container className={classes.root} direction="column">
-        <Grid item>
-          <Search search={query.search} setSearch={updateSearchInput} />
-        </Grid>
+    <DraggableWrapper theme={props.theme}>
+      <Wrapper>
+        <Search search={query.search} setSearch={updateSearchInput} />
 
         {query.search.length !== 0 && (
           <div>
@@ -76,23 +56,38 @@ export const TickerSymbolSearch = (props: {
               selectedMarket={query.market}
               updateMarket={updateMarket}
             />
-            <Grid item className={classes.body}>
+
+            <Body>
               {isLoading && <SkeletonLoading />}
               {isSuccess && (
                 <Selector symbols={symbols} callback={props.callback} />
               )}
               {isSuccess && symbols.length === 0 && (
-                <p className={classes.text}>No symbols found...</p>
+                <Text>No symbols found...</Text>
               )}
-              {isError && (
-                <p className={classes.text}>
-                  There was an error fetching symbols...
-                </p>
-              )}
-            </Grid>
+              {isError && <Text>There was an error fetching symbols...</Text>}
+            </Body>
           </div>
         )}
-      </Grid>
+      </Wrapper>
     </DraggableWrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.paper.background};
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  width: 100%;
+`;
+
+const Body = styled.div`
+  margin: 0px 20px 0px 20px;
+  padding-bottom: 20px;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.paper.color};
+`;

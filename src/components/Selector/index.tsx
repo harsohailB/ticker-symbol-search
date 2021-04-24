@@ -1,47 +1,50 @@
 import React from "react";
-import {
-  createStyles,
-  Grid,
-  makeStyles,
-  Table,
-  TableBody,
-  TableContainer,
-  Theme,
-} from "@material-ui/core";
 
 import { SymbolData } from "../../types/symbol";
 import Symbol from "./Symbol";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      maxHeight: "400px",
-      overflow: "scroll",
-    },
-  })
-);
+import styled from "styled-components";
 
 const Selector = (props: {
   symbols: SymbolData[];
   callback: (symbolData: SymbolData) => void;
 }) => {
-  const classes = useStyles();
-
   return (
-    <TableContainer className={classes.root}>
+    <Wrapper>
       <Table>
-        <TableBody>
-          {props.symbols.map((symbol: SymbolData) => (
-            <Symbol
-              key={symbol.symbol}
-              symbol={symbol}
-              callback={props.callback}
-            />
-          ))}
-        </TableBody>
+        {props.symbols.map((symbol: SymbolData) => (
+          <Symbol
+            key={`${symbol.symbol}-${symbol.description}-${symbol.type}-${symbol.exchange}`}
+            symbol={symbol}
+            callback={props.callback}
+          />
+        ))}
       </Table>
-    </TableContainer>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  max-height: 400px;
+  overflow: scroll;
+  width: 100%;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.paper.background};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+  }
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-spacing: 0px;
+`;
 
 export default Selector;

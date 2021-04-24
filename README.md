@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/harsohailB/ticker-symbol-search">
-    <img src="example/src/assets/images/header.png" alt="Logo" width="50%" height="auto">
+    <img src="example/src/assets/images/logo.svg" alt="Logo" width="50%" height="auto">
   </a>
 
   <h2 align="center">Ticker Symbol Search</h2>
@@ -29,12 +29,36 @@ or
 
 ### Search Component
 
-```javascript
+```JSX
 import { TickerSymbolSearch } from ticker-symbol-search
 
 export default () => {
+    const customTheme = {
+      paper: {
+        background: "rgba(128, 128, 128, 0.75)",
+        color: "white",
+      },
+      search: {
+        icon: {
+          color: "rgba(188, 204, 221, 0.25)",
+        },
+        input: {
+          color: "white",
+          placeholderColor: "rgba(188, 204, 221, 0.25)",
+        },
+      },
+      markets: {
+        background: "rgba(0, 0, 0, 0.25)",
+        color: "white",
+      },
+      selector: {
+        color: "white",
+      },
+    }
+
     return <TickerSymbolSearch
-                callback = {(data) => console.log(data)}
+              callback = {(data) => console.log(data)}
+              theme={customTheme} // optional
             />;
 }
 ```
@@ -54,7 +78,7 @@ export default () => {
 
 where,
 
-`search` query entered by user
+`search` ticker symbol query
 
 `market` "ALL" | "Futures" | "Forex" | "CFD" | "Crypto" | "Index" | "Economic"
 
