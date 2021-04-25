@@ -42,7 +42,7 @@ const TableRow = styled.tr`
   }
 `;
 
-const TableDataCell = styled.td`
+const TableDataCell = styled.td<TableDataCellProps>`
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   padding: 8px 5px 8px 5px;
   text-align: ${(props: TableDataCellProps) => props.align};
