@@ -11036,10 +11036,8 @@ thunky@^1.0.2:
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
 
-ticker-symbol-search@^1.0.0:
+ticker-symbol-search@../:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ticker-symbol-search/-/ticker-symbol-search-1.0.0.tgz#ecea324b7f836f3e6f08e53d314cc66dc4f55f21"
-  integrity sha512-Pt3pHz+A1zqSqJqNooHGmeYRNcIwXDgU1w6l8dVYp2WKklFK/tD8blgl77OkopEWGLOjk9ZDzY2LpTyjc1nCWg==
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
