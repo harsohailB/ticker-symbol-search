@@ -17,6 +17,12 @@
   </p>
 </p>
 
+## Usage
+
+<p align="center">
+  <img src="./example/src/assets/images/usage.gif" alt="usage" width="75%"/>
+</p>
+
 ## Installation
 
 `npm install ticker-symbol-search`
@@ -84,7 +90,7 @@ where,
 
 ### Symbol Data Fetched
 
-Through callback or hook
+#### Stock Data Example
 
 ```json
 {
@@ -96,6 +102,21 @@ Through callback or hook
   "typespecs": ["common"],
   "country": "US"
 }
+```
+
+### Types
+
+```javascript
+import {
+  StockSymbol,
+  FuturesSymbol,
+  ForexSymbol,
+  CFDSymbol,
+  CryptoSymbol,
+  IndexSymbol,
+  EconomicSymbol,
+  SymbolData, // union type of all symbols
+} from "ticker-symbol-search";
 ```
 
 ## Development
