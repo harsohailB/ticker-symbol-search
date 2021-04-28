@@ -19,6 +19,17 @@
     "type": "git",
     "url": "https://github.com/harsohailB/ticker-symbol-search"
   },
+  "keywords": [
+    "react",
+    "typescript",
+    "library",
+    "stocks",
+    "tickers",
+    "fintech",
+    "crypto",
+    "finance",
+    "search"
+  ],
   "bugs": "https://github.com/harsohailB/ticker-symbol-search/issues",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
