@@ -5,20 +5,16 @@ import axios from "axios";
 import { MarketTypes } from "../types/markets";
 
 export const getSymbols = async (queryParams: SymbolQueryParams) => {
-  const endpointURL: string = `${config.proxyEndpoint}/${config.endpoint}/${Routes.SYMBOL_SEARCH}/`;
+  const targetParams: string = `?type=${
+    queryParams.type === MarketTypes.ALL ? "" : queryParams.type.toLowerCase()
+  }&text=${queryParams.text}&hl=${
+    queryParams.hl
+  }&exchange=&lang=en&domain=production`;
 
-  const response = await axios.get(endpointURL, {
-    params: {
-      text: queryParams.text,
-      hl: queryParams.hl,
-      exchange: "",
-      type:
-        queryParams.type === MarketTypes.ALL
-          ? ""
-          : queryParams.type.toLowerCase(),
-      lang: "en",
-      domain: "production",
-    },
+  const symbolsEndpoint: string = `${config.endpoint}/${Routes.SYMBOL_SEARCH}`;
+
+  const response = await axios.get(config.proxyEndpoint, {
+    params: { url: symbolsEndpoint + targetParams },
   });
 
   if (response.status !== 200) {
