@@ -28,7 +28,8 @@
     "fintech",
     "crypto",
     "finance",
-    "search"
+    "search",
+    "symbol"
   ],
   "bugs": "https://github.com/harsohailB/ticker-symbol-search/issues",
   "dependencies": {
